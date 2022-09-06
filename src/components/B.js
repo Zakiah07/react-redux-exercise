@@ -7,11 +7,11 @@ const Container = styled.div`
   border: 1px solid gray;
 `;
 
-const B = ({ activeTheme, setActiveTheme }) => {
+const B = () => {
   return (
     <Container>
       <p>Component B</p>
-      <C activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
+      <C />
     </Container>
   );
 };

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import GlobalStyle from "./GlobalStyles";
 import styled from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { pinkTheme, grayTheme } from "./theme";
+import { useSelector } from "react-redux";
 import A from "./components/A";
 
 const PrimaryButton = styled.button`
@@ -53,24 +54,19 @@ const ToggleButton = styled.button`
 `;
 
 function App() {
-  const [activeTheme, setActiveTheme] = useState("pink");
-
-  const changeTheme = () => {
-    if (activeTheme === "pink") {
-      setActiveTheme("gray");
-    } else {
-      setActiveTheme("pink");
-    }
-  };
+  const reduxActiveTheme = useSelector((state) => state.theme.activeTheme);
+  console.log({ reduxActiveTheme });
 
   return (
     <>
-      <ThemeProvider theme={activeTheme === "pink" ? pinkTheme : grayTheme}>
+      <ThemeProvider
+        theme={reduxActiveTheme === "pink" ? pinkTheme : grayTheme}
+      >
         <GlobalStyle />
-        <p>You are currently viewing {activeTheme} theme</p>
+        <p>You are currently viewing {reduxActiveTheme} theme</p>
 
-        <ToggleButton onClick={changeTheme}>Press Me!</ToggleButton>
-        <A activeTheme={activeTheme} setActiveTheme={setActiveTheme} />
+        <ToggleButton onClick={() => {}}>Press Me!</ToggleButton>
+        <A />
         <hr />
         <div style={{ display: "flex", gap: "10px" }}>
           <PrimaryButton>Primary Button</PrimaryButton>
