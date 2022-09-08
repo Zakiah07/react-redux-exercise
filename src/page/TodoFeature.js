@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 import TodoInput from "./TodoInput";
+import styled from "styled-components";
+
+const Container = styled.div`
+  .complete {
+    text-decoration: line-through;
+    opacity: 0.4;
+  }
+`;
 
 const TodoFeature = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   const [edit, setEdit] = useState({
@@ -23,10 +31,10 @@ const TodoFeature = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   }
 
   return (
-    <div>
+    <Container>
       {todos.map((todo, index) => (
         <div
-          className={todo.isComplete ? "todo-row-complete" : "todo-row"}
+          className={todo.isComplete ? "todo-row complete" : "todo-row"}
           key={index}
         >
           <div key={todo.id} onClick={() => completeTodo(todo.id)}>
@@ -44,7 +52,7 @@ const TodoFeature = ({ todos, completeTodo, removeTodo, updateTodo }) => {
           </div>
         </div>
       ))}
-    </div>
+    </Container>
   );
 };
 

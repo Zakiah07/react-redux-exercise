@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   todos: [
-    { id: "Asfdaef3", text: "Default Todo 1", isCompleted: false },
-    { id: "fgjfgdf", text: "Default Todo 2", isCompleted: true },
+    { id: "Asfdaef3", text: "Default Todo 1", isComplete: false },
+    { id: "fgjfgdf", text: "Default Todo 2", isComplete: true },
   ],
 };
 
