@@ -19,6 +19,7 @@ const TodoInput = ({ edit, onSubmit }) => {
     onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
+      isCompleted: false,
     });
   };
 
@@ -36,7 +37,7 @@ const TodoInput = ({ edit, onSubmit }) => {
               onChange={handleChange}
               ref={inputRef}
             />
-            <button className="todo-button">Update</button>
+            <button className="todo-button edit">Update</button>
           </>
         ) : (
           <>
