@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   todos: [
     { id: "Asfdaef3", text: "Default Todo 1", isCompleted: false },
-    { id: "Asfdaef3", text: "Default Todo 2", isCompleted: true },
+    { id: "fgjfgdf", text: "Default Todo 2", isCompleted: true },
   ],
 };
 
@@ -16,9 +16,14 @@ export const todoSlice = createSlice({
       //   state.todos = [...state.todos, payload];
       state.todos.push(payload);
     },
+    removeTodo: (state, { payload }) => {
+      console.log({ payload });
+      const filteredTodo = state.todos.filter((todo) => todo.id !== payload);
+      state.todos = filteredTodo;
+    },
   },
 });
 
-export const { addNewTodo } = todoSlice.actions;
+export const { addNewTodo, removeTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

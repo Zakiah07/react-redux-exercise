@@ -2,7 +2,7 @@ import React from "react";
 import TodoFeature from "./TodoFeature";
 import TodoInput from "./TodoInput";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTodo } from "./todoSlice";
+import { addNewTodo, removeTodo } from "./todoSlice";
 
 const TodoForm = () => {
   const reduxTodo = useSelector((state) => state.todo.todos);
@@ -27,9 +27,9 @@ const TodoForm = () => {
     // );
   };
 
-  const removeTodo = (id) => {
-    // const removeArr = [...todos].filter((todo) => todo.id !== id);
-    // setTodos(removeArr);
+  const handleRemoveTodo = (id) => {
+    dispatch(removeTodo(id));
+    console.log(id);
   };
 
   const completeTodo = (id) => {
@@ -50,7 +50,7 @@ const TodoForm = () => {
       <TodoFeature
         todos={reduxTodo}
         completeTodo={completeTodo}
-        removeTodo={removeTodo}
+        removeTodo={handleRemoveTodo}
         updateTodo={updateTodo}
       />
     </div>
