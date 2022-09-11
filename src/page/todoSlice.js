@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 
 const initialState = {
   todos: [
