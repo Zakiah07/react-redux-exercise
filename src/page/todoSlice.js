@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { calculateNewValue } from "@testing-library/user-event/dist/utils";
 
 const initialState = {
   todos: [
@@ -21,9 +22,30 @@ export const todoSlice = createSlice({
       const filteredTodo = state.todos.filter((todo) => todo.id !== payload);
       state.todos = filteredTodo;
     },
+    toggleTodo: (state, { payload }) => {
+      console.log({ payload });
+      const updatedTodos = state.todos.map((todo) => {
+        if (todo.id === payload) {
+          todo.isComplete = !todo.isComplete;
+        }
+        return todo;
+      });
+      state.todos = updatedTodos;
+    },
+    updateTodo: (state, { payload }) => {
+      console.log({ payload });
+      const updatedTodos = state.todos.map((todo) => {
+        if (todo.id === payload.todoId) {
+          return { ...todo, text: payload.newText };
+        }
+        return todo;
+      });
+      state.todos = updatedTodos;
+    },
   },
 });
 
-export const { addNewTodo, removeTodo } = todoSlice.actions;
+export const { addNewTodo, removeTodo, toggleTodo, updateTodo } =
+  todoSlice.actions;
 
 export default todoSlice.reducer;

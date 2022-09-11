@@ -2,7 +2,7 @@ import React from "react";
 import TodoFeature from "./TodoFeature";
 import TodoInput from "./TodoInput";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTodo, removeTodo } from "./todoSlice";
+import { addNewTodo, removeTodo, toggleTodo, updateTodo } from "./todoSlice";
 
 const TodoForm = () => {
   const reduxTodo = useSelector((state) => state.todo.todos);
@@ -11,20 +11,10 @@ const TodoForm = () => {
   const addTodo = (todo) => {
     dispatch(addNewTodo(todo));
     console.log({ todo });
-    // if (!todo.text || /^\s*$/.test(todo.text)) {
-    //   return;
-    // }
-    // const newTodos = [todo, ...todos];
-    // setTodos(newTodos);
   };
 
-  const updateTodo = (todoId, newValue) => {
-    // if (!newValue.text || /^\s*$/.test(newValue.text)) {
-    //   return;
-    // }
-    // setTodos((prev) =>
-    //   prev.map((item) => (item.id === todoId ? newValue : item))
-    // );
+  const handleUpdateTodo = (todoId, newText) => {
+    dispatch(updateTodo({ todoId, newText }));
   };
 
   const handleRemoveTodo = (id) => {
@@ -32,14 +22,9 @@ const TodoForm = () => {
     console.log(id);
   };
 
-  const completeTodo = (id) => {
-    // let updatedTodos = todos.map((todo) => {
-    //   if (todo.id === id) {
-    //     todo.isComplete = !todo.isComplete;
-    //   }
-    //   return todo;
-    // });
-    // setTodos(updatedTodos);
+  const handleCompleteTodo = (id) => {
+    dispatch(toggleTodo(id));
+    console.log(id);
   };
 
   return (
@@ -49,9 +34,9 @@ const TodoForm = () => {
       <TodoInput onSubmit={addTodo} />
       <TodoFeature
         todos={reduxTodo}
-        completeTodo={completeTodo}
+        completeTodo={handleCompleteTodo}
         removeTodo={handleRemoveTodo}
-        updateTodo={updateTodo}
+        updateTodo={handleUpdateTodo}
       />
     </div>
   );

@@ -19,7 +19,7 @@ const TodoInput = ({ edit, onSubmit }) => {
     onSubmit({
       id: Math.floor(Math.random() * 10000),
       text: input,
-      isCompleted: false,
+      isComplete: false,
     });
   };
 

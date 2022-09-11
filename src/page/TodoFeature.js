@@ -18,7 +18,7 @@ const TodoFeature = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   });
 
   const submitUpdate = (value) => {
-    updateTodo(edit.id, value);
+    updateTodo(edit.id, value.text);
 
     setEdit({
       id: null,
